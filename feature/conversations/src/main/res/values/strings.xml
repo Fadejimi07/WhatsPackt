@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="conversations_list_title">Conversations</string>
+    <string name="menu">Menu</string>
+
+    <string name="conversations_tab_status_title">
+        Status
+    </string>
+    <string name="conversations_tab_chats_title">
+        Chats
+    </string>
+    <string name="conversations_tab_calls_title">
+        Calls
+    </string>
+
+    <string name="conversation_add_fab_title">
+        Add
+    </string>
+    <string name="avatar_content_description">%s\'s avatar</string>
+</resources>

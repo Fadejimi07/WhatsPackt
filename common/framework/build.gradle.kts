@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -30,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
@@ -37,7 +41,21 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.compose.ui.ui)
+    implementation(libs.androidx.compose.material3.material3)
+    // Android Studio Preview support
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+
+    // UI Tests
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
+
+    // Coil
+    implementation(libs.coil.compose)
 }
