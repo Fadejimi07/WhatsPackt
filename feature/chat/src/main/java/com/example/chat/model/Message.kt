@@ -6,5 +6,5 @@ data class Message(
     val senderAvatar: String,
     val timeStamp: String,
     val isMine: Boolean,
-    val messageCount: MessageContent
+    val messageContent: MessageContent
 )
