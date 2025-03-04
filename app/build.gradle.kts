@@ -67,6 +67,12 @@ dependencies {
     // hilt dependency
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // compose navigation dependency
+    val nav_version = "2.8.8"
+
+    implementation(libs.androidx.navigation.compose)
 }
 
 // Allow references to generated code
