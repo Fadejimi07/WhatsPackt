@@ -16,6 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,37 +26,47 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.chat.R
+import com.example.chat.ui.viewmodel.ChatViewModel
 
 @Composable
 fun ChatScreen(
+    viewModel: ChatViewModel = hiltViewModel(),
     chatId: String?,
     onBack: () -> Unit
 ) {
+    val messages by viewModel.messages.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.loadAndUpdateMessages()
+        viewModel.loadChatInformation(chatId.orEmpty())
+    }
     Scaffold(
         topBar = {
-            ChatTopAppBar()
+            ChatTopAppBar(uiState.name.orEmpty())
         },
         bottomBar = {
-            SendMessageBox()
+            SendMessageBox { viewModel.onSendMessage(it) }
         }
     ) { innerPadding ->
-        ListOfMessages(innerPadding = innerPadding)
+        ListOfMessages(innerPadding = innerPadding, messages = messages)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChatTopAppBar() {
+fun ChatTopAppBar(name: String) {
     TopAppBar(
         title = {
-            Text(text = stringResource(R.string.chat_title, "Alice"))
+            Text(text = stringResource(R.string.chat_title, name))
         },
     )
 }
 
 @Composable
-fun SendMessageBox() {
+fun SendMessageBox(sendMessage: (String) -> Unit) {
     Box(
         modifier = Modifier
             .defaultMinSize()
@@ -77,6 +89,7 @@ fun SendMessageBox() {
                 .align(Alignment.CenterEnd)
                 .height(56.dp),
             onClick = {
+                sendMessage(text)
                 text = ""
             }
         ) {

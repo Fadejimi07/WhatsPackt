@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.chat.model.Message
-import com.example.chat.model.MessageContent
+import com.example.chat.ui.model.Message
+import com.example.chat.ui.model.MessageContent
 import com.example.framework.ui.Avatar
 
 @Composable

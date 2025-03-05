@@ -1,4 +1,4 @@
-package com.example.chat.model
+package com.example.chat.ui.model
 
 sealed class MessageContent {
     data class TextMessage(val message: String) : MessageContent()

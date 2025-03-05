@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -38,11 +40,15 @@ android {
 
 dependencies {
 
+    implementation(project(":common:framework"))
+    implementation(project(":common:data"))
+    implementation(project(":common:domain"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.runtime.android)
-    implementation(project(":common:framework"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +62,21 @@ dependencies {
     // Coil image
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+    // ktor
+    implementation(libs.ktor.client.websockets)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.android)
+
+    // hilt dependency
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

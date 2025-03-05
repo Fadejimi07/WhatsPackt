@@ -10,10 +10,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.chat.data.getFakeMessages
+import com.example.chat.ui.model.Message
 
 @Composable
-fun ListOfMessages(innerPadding: PaddingValues) {
+fun ListOfMessages(innerPadding: PaddingValues, messages: List<Message>) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -23,7 +23,7 @@ fun ListOfMessages(innerPadding: PaddingValues) {
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(getFakeMessages()) { message ->
+            items(messages) { message ->
                 MessageItem(message = message)
             }
         }

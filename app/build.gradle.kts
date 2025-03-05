@@ -74,6 +74,10 @@ dependencies {
     val nav_version = "2.8.8"
 
     implementation(libs.androidx.navigation.compose)
+
+    // ktor websocket
+    implementation(libs.ktor.client.websockets)
+    implementation(libs.ktor.cleint.okhttp)
 }
 
 // Allow references to generated code

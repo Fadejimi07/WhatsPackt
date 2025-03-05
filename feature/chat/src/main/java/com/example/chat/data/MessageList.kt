@@ -1,7 +1,7 @@
 package com.example.chat.data
 
-import com.example.chat.model.Message
-import com.example.chat.model.MessageContent
+import com.example.chat.ui.model.Message
+import com.example.chat.ui.model.MessageContent
 
 fun getFakeMessages(): List<Message> {
     return listOf(
