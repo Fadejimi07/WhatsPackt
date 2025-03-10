@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -78,6 +79,14 @@ dependencies {
     // ktor websocket
     implementation(libs.ktor.client.websockets)
     implementation(libs.ktor.cleint.okhttp)
+
+    // firebase dependencies
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.messaging)
+    implementation(libs.kotlinx.coroutines.play.services)
 }
 
 // Allow references to generated code

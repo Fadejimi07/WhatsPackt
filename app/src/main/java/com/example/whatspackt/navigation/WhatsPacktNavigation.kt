@@ -8,9 +8,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.example.chat.ui.ChatScreen
 import com.example.conversations.ui.ConversationsListScreen
 import com.example.create_chat.ui.CreateConversationScreen
+import com.example.framework.navigation.DeepLinks
 import com.example.framework.navigation.NavRoutes
 
 @Composable
@@ -56,7 +58,8 @@ private fun NavGraphBuilder.addChat(navController: NavHostController) {
         route = NavRoutes.Chat,
         arguments = listOf(navArgument(NavRoutes.ChatArgs.ChatId) {
             type = NavType.StringType
-        })
+        }),
+        deepLinks = listOf(navDeepLink { uriPattern = DeepLinks.chatRoute })
     ) { navBackStackEntry ->
         val chatId = navBackStackEntry.arguments?.getString(NavRoutes.ChatArgs.ChatId)
         ChatScreen(chatId = chatId, onBack = {

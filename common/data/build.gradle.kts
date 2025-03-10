@@ -33,11 +33,20 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":common:domain"))
+    implementation(project(":common:framework"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(platform(libs.firebase.bom.v2903))
+    implementation(libs.hilt.android.v244)
+
+    implementation(libs.google.firebase.auth)
+    implementation(libs.google.firebase.firestore)
+    implementation(libs.google.firebase.messaging)
+    implementation(libs.kotlinx.coroutines.play.services.v164)
 }
